@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blog | Reza Dwi Putra, Notes on Backend & Real-Time Systems</title>
+<meta name="description" content="Writing from Reza Dwi Putra on backend engineering, real-time systems, and building small, dependable tools.">
+<meta name="keywords" content="backend engineering blog, real-time systems, Node.js, software reliability, Reza Dwi Putra">
+<meta name="author" content="Reza Dwi Putra">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rezadwiputra.dev/blog.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rezadwiputra.dev/blog.html">
+<meta property="og:site_name" content="Reza Dwi Putra">
+<meta property="og:title" content="Blog | Reza Dwi Putra">
+<meta property="og:description" content="Notes on backend engineering, real-time systems, and building small, dependable tools.">
+<meta property="og:image" content="https://rezadwiputra.dev/assets/og-image.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog | Reza Dwi Putra">
+<meta name="twitter:description" content="Notes on backend engineering, real-time systems, and building small, dependable tools.">
+<meta name="twitter:image" content="https://rezadwiputra.dev/assets/og-image.jpg">
+
+<meta name="theme-color" content="#f3f1ea">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%2314130f%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 font-family=%22monospace%22 fill=%22%23f3f1ea%22 text-anchor=%22middle%22>R</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Reza Dwi Putra Blog",
+  "url": "https://rezadwiputra.dev/blog.html",
+  "author": {
+    "@type": "Person",
+    "name": "Reza Dwi Putra"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Designing Systems That Assume the Network Will Fail",
+      "url": "https://rezadwiputra.dev/blog/reliability-by-default.html",
+      "datePublished": "2026-06-02"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Why I Reach for File-Backed Storage Before a Database Server",
+      "url": "https://rezadwiputra.dev/blog/file-backed-storage.html",
+      "datePublished": "2026-04-14"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Building Small: Fewer Moving Parts, Easier to Trust",
+      "url": "https://rezadwiputra.dev/blog/building-small.html",
+      "datePublished": "2026-02-21"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-mark" href="index.html">RDP</a>
+    <nav class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero wrap">
+  <span class="mono-label">Writing</span>
+  <h1>Notes on backend engineering & real-time systems.</h1>
+  <p>Short write-ups on the problems I keep running into: reliability, storage, and keeping software small enough to actually understand.</p>
+</section>
+
+<section class="blog-list wrap" aria-label="Blog posts">
+
+  <article class="post-card reveal">
+    <div class="post-date mono-label">Jun 02, 2026</div>
+    <div>
+      <h2 class="post-title"><a href="blog/reliability-by-default.html">Designing Systems That Assume the Network Will Fail</a></h2>
+      <p class="post-excerpt">Real-time features are only as trustworthy as their worst connection. Some notes on treating disconnects, retries, and dropped messages as the normal case instead of the exception.</p>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag">Reliability</span>
+    </div>
+  </article>
+
+  <article class="post-card reveal">
+    <div class="post-date mono-label">Apr 14, 2026</div>
+    <div>
+      <h2 class="post-title"><a href="blog/file-backed-storage.html">Why I Reach for File-Backed Storage Before a Database Server</a></h2>
+      <p class="post-excerpt">Before installing a database server, it's worth asking what problem it's actually solving. Thoughts on when a plain file on disk is the more honest answer.</p>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag">Storage</span>
+    </div>
+  </article>
+
+  <article class="post-card reveal">
+    <div class="post-date mono-label">Feb 21, 2026</div>
+    <div>
+      <h2 class="post-title"><a href="blog/building-small.html">Building Small: Fewer Moving Parts, Easier to Trust</a></h2>
+      <p class="post-excerpt">A case for keeping tools small on purpose, and why constraint tends to produce software that's easier to reason about, debug, and hand off.</p>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag">Philosophy</span>
+    </div>
+  </article>
+
+</section>
+
+<footer class="wrap light">
+  <span>© 2026 REZA DWI PUTRA</span>
+  <span>BACKEND DEVELOPER / SUMSEL, ID</span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

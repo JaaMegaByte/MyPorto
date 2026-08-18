@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Building Small: Fewer Moving Parts, Easier to Trust | Reza Dwi Putra</title>
+<meta name="description" content="A case for keeping tools small on purpose, and why constraint tends to produce software that is easier to reason about, debug, and hand off.">
+<meta name="author" content="Reza Dwi Putra">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rezadwiputra.dev/blog/building-small.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rezadwiputra.dev/blog/building-small.html">
+<meta property="og:title" content="Building Small: Fewer Moving Parts, Easier to Trust">
+<meta property="og:description" content="A case for keeping tools small on purpose.">
+<meta property="og:image" content="https://rezadwiputra.dev/assets/og-image.jpg">
+<meta property="article:published_time" content="2026-02-21">
+<meta property="article:author" content="Reza Dwi Putra">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Building Small: Fewer Moving Parts, Easier to Trust">
+<meta name="twitter:description" content="A case for keeping tools small on purpose.">
+
+<meta name="theme-color" content="#f3f1ea">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%2314130f%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 font-family=%22monospace%22 fill=%22%23f3f1ea%22 text-anchor=%22middle%22>R</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Building Small: Fewer Moving Parts, Easier to Trust",
+  "datePublished": "2026-02-21",
+  "author": { "@type": "Person", "name": "Reza Dwi Putra" },
+  "url": "https://rezadwiputra.dev/blog/building-small.html"
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-mark" href="../index.html">RDP</a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<header class="post-header wrap">
+  <span class="mono-label">Philosophy</span>
+  <h1>Building Small: Fewer Moving Parts, Easier to Trust</h1>
+  <div class="post-meta">
+    <span>Feb 21, 2026</span>
+    <span>Reza Dwi Putra</span>
+    <span>4 min read</span>
+  </div>
+</header>
+
+<section class="post-body wrap">
+  <div></div>
+  <article class="post-content reveal">
+    <p>Most of what I build is small on purpose. Not because small is a virtue in itself, but because a smaller system is one I can actually hold in my head: every dependency, every failure mode, every place state can get out of sync. That's a real advantage, and it's an easy one to trade away for convenience.</p>
+
+    <h2>Every dependency is a decision, not a default</h2>
+    <p>It's simple to add a library for something a project could do in twenty lines itself. Sometimes that's the right call. No one should hand-roll a cryptography library. But each dependency is also a piece of behavior you didn't write and don't fully control, with its own bugs, its own breaking changes, and its own maintenance timeline that doesn't match yours. Treating "add a dependency" as a decision with a real cost, rather than a free convenience, tends to keep a project smaller and more predictable over time.</p>
+
+    <h2>Debugging is proportional to surface area</h2>
+    <p>When something breaks in a small system, there are fewer places it could be. That sounds obvious, but it compounds: a system with five moving parts has roughly five places to check, while a system with fifty has a search space an order of magnitude larger, and the interactions between those parts multiply faster than the parts themselves. A lot of "this bug took three days to find" stories are really stories about surface area that grew faster than anyone was tracking it.</p>
+
+    <h2>Small is also more honest about scope</h2>
+    <p>A small tool tends to say clearly what it does and doesn't do. A large one accumulates configuration options and edge-case handling until its actual scope is hard to state in a sentence. When I'm deciding how to build something, I try to write down what it needs to do in one sentence first, and treat anything that doesn't fit that sentence as a feature for a different tool, not a reason to expand this one.</p>
+
+    <p>None of this rules out building bigger systems. Some problems genuinely need them. But defaulting to small, and only growing a system when there's a concrete reason to, tends to produce software I trust more and enjoy maintaining longer.</p>
+  </article>
+</section>
+
+<section class="wrap">
+  <div class="post-nav">
+    <a href="../blog.html"><span class="arrow-back"></span> Back to all posts</a>
+  </div>
+</section>
+
+<footer class="wrap light">
+  <span>© 2026 REZA DWI PUTRA</span>
+  <span>BACKEND DEVELOPER / SUMSEL, ID</span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

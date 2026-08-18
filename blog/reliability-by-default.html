@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Designing Systems That Assume the Network Will Fail | Reza Dwi Putra</title>
+<meta name="description" content="Notes on treating disconnects, retries, and dropped messages as the normal case in real-time systems, not the exception.">
+<meta name="author" content="Reza Dwi Putra">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rezadwiputra.dev/blog/reliability-by-default.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rezadwiputra.dev/blog/reliability-by-default.html">
+<meta property="og:title" content="Designing Systems That Assume the Network Will Fail">
+<meta property="og:description" content="Notes on treating disconnects, retries, and dropped messages as the normal case in real-time systems, not the exception.">
+<meta property="og:image" content="https://rezadwiputra.dev/assets/og-image.jpg">
+<meta property="article:published_time" content="2026-06-02">
+<meta property="article:author" content="Reza Dwi Putra">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Designing Systems That Assume the Network Will Fail">
+<meta name="twitter:description" content="Notes on treating disconnects, retries, and dropped messages as the normal case in real-time systems, not the exception.">
+
+<meta name="theme-color" content="#f3f1ea">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%2314130f%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 font-family=%22monospace%22 fill=%22%23f3f1ea%22 text-anchor=%22middle%22>R</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Designing Systems That Assume the Network Will Fail",
+  "datePublished": "2026-06-02",
+  "author": { "@type": "Person", "name": "Reza Dwi Putra" },
+  "url": "https://rezadwiputra.dev/blog/reliability-by-default.html"
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-mark" href="../index.html">RDP</a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<header class="post-header wrap">
+  <span class="mono-label">Reliability</span>
+  <h1>Designing Systems That Assume the Network Will Fail</h1>
+  <div class="post-meta">
+    <span>Jun 02, 2026</span>
+    <span>Reza Dwi Putra</span>
+    <span>5 min read</span>
+  </div>
+</header>
+
+<section class="post-body wrap">
+  <div></div>
+  <article class="post-content reveal">
+    <p>Every real-time feature makes a quiet promise: what you see on screen matches what's actually happening. A chat message arrives, a status updates, a bot replies. The moment that promise breaks, because a socket dropped, a request timed out, or two updates arrived out of order, the feature stops feeling real-time and starts feeling broken.</p>
+
+    <p>Most of the bugs I've chased in real-time systems weren't logic errors. They were unstated assumptions about the network. That a connection stays open. That messages arrive in the order they were sent. That a retry is harmless. None of those assumptions hold up in practice, and treating them as true is usually where the flakiness comes from.</p>
+
+    <h2>Start from disconnection, not connection</h2>
+    <p>It's tempting to design the happy path first and bolt reconnect logic on afterward. That ordering tends to produce reconnect logic that feels like an afterthought: a spinner, a generic error, a full page reload. Flipping the order helps. Design what the interface looks like while disconnected and while catching up, then treat the connected state as one case among several rather than the default.</p>
+
+    <h2>Make retries idempotent before making them automatic</h2>
+    <p>An automatic retry that isn't safe to repeat just turns a dropped request into a duplicated one. Before adding retry logic anywhere, it's worth confirming the operation can run twice with the same input and produce the same result. That single property removes an entire category of "why did this happen twice" bugs later on.</p>
+
+    <h2>Order is not guaranteed, so stop assuming it</h2>
+    <p>Two messages sent a few milliseconds apart can arrive in either order, especially across reconnects. Systems that quietly assume arrival order matches send order tend to work fine in testing and fail intermittently in production, which is the worst kind of bug to track down. Attaching a sequence number or timestamp to state changes, and reconciling based on that instead of arrival order, removes a lot of the guesswork.</p>
+
+    <blockquote>The network isn't a wire that occasionally misbehaves. It's a set of conditions, latency, loss, reordering, duplication, that are always present in some amount.</blockquote>
+
+    <p>None of this is exotic. It's mostly about designing for the failure states from the start instead of patching them in once users start noticing. The systems that feel the most solid in practice are usually the ones where someone thought carefully about what happens when things go wrong, not just when they go right.</p>
+  </article>
+</section>
+
+<section class="wrap">
+  <div class="post-nav">
+    <a href="../blog.html"><span class="arrow-back"></span> Back to all posts</a>
+  </div>
+</section>
+
+<footer class="wrap light">
+  <span>© 2026 REZA DWI PUTRA</span>
+  <span>BACKEND DEVELOPER / SUMSEL, ID</span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
